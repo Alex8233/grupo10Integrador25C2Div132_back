@@ -1,0 +1,38 @@
+    <%- include("partials/head.ejs") %>
+    <!--holaaa-->
+    <%- include("partials/header.ejs") %>
+    <main class="contenedor-form">
+         
+         <form id="altaProducts-form" class="products-form">
+            <h1><%= about %></h1>
+            <div class="contenedor-input">
+                <label for="nameProd">Nombre</label>
+                <input type="text" name="nombre" id="nameProd" required>
+            </div>
+            <div class="contenedor-input">
+                <label for="imageProd">Imagen</label>
+                <input type="text" name="img_url" id="imageProd" required>
+            </div>
+            <div class="contenedor-input">
+                <label for="categoryProd">Categoria</label>
+                <select name="tipo" id="categoryProd" required>
+                    <option value="VARA">Caña de pesca</option>
+                    <option value="REEL">Reel de pesca</option>
+                </select>
+                
+            </div>
+            <div class="contenedor-input">
+                 <label for="priceProd">Precio</label>
+                <input type="number" name="precio" id="priceProd" required>
+            </div>
+            <div class="contenedor-input">
+                 <input class="submit" type="submit" value="Crear producto">
+            </div>
+                   
+        </form>
+
+    </main>
+    <%- include("partials/footer.ejs") %>
+    <script src="js/crear.js"></script>
+</body>
+</html>

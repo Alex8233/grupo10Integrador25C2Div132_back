@@ -30,6 +30,46 @@ app.get("/index",async (req, res) => {
         console.log(error);
     }
 })
+app.get("/consultar", async (req,res)=>{
+    try{
+        res.render("consultar", {
+            title: "Consultar",
+            about: "Consultar producto por id:",
+        }); 
+    }catch(error){
+        console.log(error);
+    }
+})
+app.get("/crear", async (req,res)=>{
+    try{
+        res.render("crear", {
+            title: "crear",
+            about: "Crear producto",
+        }); 
+    }catch(error){
+        console.log(error);
+    }
+})
+app.get("/eliminar", async (req,res)=>{
+    try{
+        res.render("eliminar", {
+            title: "Eliminar",
+            about: "Eliminar producto",
+        }); 
+    }catch(error){
+        console.log(error);
+    }
+})
+app.get("/modificar", async (req,res)=>{
+    try{
+        res.render("modificar", {
+            title: "modificar",
+            about: "Actualizar producto",
+        }); 
+    }catch(error){
+        console.log(error);
+    }
+})
 app.get("/", (req, res) => {
     res.send("TP Integrador Div 132");
 });

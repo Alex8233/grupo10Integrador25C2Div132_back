@@ -1,0 +1,48 @@
+ <%- include("partials/head.ejs") %>
+ 
+    <main class="contenedor-form">    
+        
+         
+            <form class="products-form" id="loginForm" action="/login" method="POST" novalidate>
+                
+                
+            <h1><%= about %></h1> 
+            <p>Ingrese sus credenciales para desbloquear todas las funcionalidades.</p>
+            <!-- <p>no tienes usuario? <span><a href="/auth/register">register</a></span></p> -->
+                <% if (typeof error !== "undefined") { %>
+            <div class="error-message">
+                <%= error %>
+            </div>
+            <% } %>
+                <div class="contenedor-input">
+                    <label for="correo" class="form-label">correo:</label>
+                    <input type="text" class="form-control" id="correo" name="correo" placeholder="ingrese su correo" required>
+                   
+                </div>
+            
+                <div class="contenedor-input">
+                    <label for="contraseña" class="form-label">contraseña:</label>
+                    <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="contraseña" required>
+                   
+                </div>
+                    
+                <div class="contenedor-input">
+                    <input type="submit" class="btn-login" value="Login">
+                    <input type="button" id="acceso" class="btn-login" value="Acceso rápido">
+                </div>
+               
+            </form>
+        
+    </main>
+    <script>
+         let emailUser = document.getElementById("correo");
+        let passwordUser = document.getElementById("contrasenia");
+
+        let acceso_rapido = document.getElementById("acceso");
+        acceso_rapido.addEventListener("click", () => {
+            emailUser.value = "test@test.com";
+            passwordUser.value = "test";
+        });
+    </script>
+</body>
+</html>

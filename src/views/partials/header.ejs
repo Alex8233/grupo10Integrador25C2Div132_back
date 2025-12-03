@@ -1,38 +1,27 @@
 <header>
         <div class="header-main">
             <div class="header-busqueda">
-                <nav class="buscar-producto">
-                
-                    <input  id="barraBusqueda" type="text" placeholder="¿Que estas buscando?">
+                <div class="header-registro" >
+                    <div class="registro">
+                       <ion-icon name="person-outline"></ion-icon>
+                       
+                        <div>
+                            <%- console.log(user) %>
+                            <h6><%-user.nombre%></h6>
+                            <p> email: <%-user.correo%>
+                            </p>
+                        </div>                      
+                    </div>
+                </div>
+               
+
                 </nav>
                 <div class="logo">
                     <img src="https://acdn-us.mitiendanube.com/stores/006/296/350/themes/common/logo-1444518768-1748714067-c86f57064af934abbc8cf8f22bf870571748714067-480-0.webp" alt="logo">
                 </div>
-                <div class="header-registro" >
-                    <div class="registro">
-                        <ion-icon name="person-outline"></ion-icon>
-                        <div>
-                            <h6>¡Hola! inicia seccion</h6>
-                            <a href="#" class="crear-cuenta">
-                                <p>O puedes registrarte</p>
-                            </a>
-                        </div>
-                        
-                    </div>
-                    <div class="header-carrito">
-                        <a href="#">
-                            <ion-icon name="cart-outline"></ion-icon>
-                            <div class="contenedor-carrito">
-                                <div>
-                                    <h2>Mi carrito</h2>
-                                </div>
-                                
-                                <aside id="carrito"></aside>
-                            </div>
-                        </a>
-                        
-                    </div>
-                </div>
+                <form class="header-from" action="/logout" method="POST" id="logout">
+                     <input class="submenu" type="submit" value="Cerrar sesion">
+                </form>
                     
             </div>
         </div>
@@ -56,6 +45,11 @@
                     <a href="/modificar">
                         <p>MODIFICAR</p>
                     </a></nav>
+                    <nav class="navegacion">
+                        <a href="/registrar-usuario">
+                            <p>Crear User</p>
+                        </a>
+                    </nav>
             </div>
         </div>
         

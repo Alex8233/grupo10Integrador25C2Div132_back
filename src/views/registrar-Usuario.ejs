@@ -1,0 +1,46 @@
+ <%- include("partials/head.ejs") %>
+
+ <main class="contenedor-form">    
+        
+         
+            <form class="products-form" id="loginForm" action="/registrar-usuario" method="POST" novalidate>
+                
+                
+            <h1><%= about %></h1> 
+             <legend>ingrese sus credenciales...</legend>
+            <!-- <p>no tienes usuario? <span><a href="/auth/register">register</a></span></p> -->
+                <% if (typeof error !== "undefined") { %>
+            <div class="error-message">
+                <%= error %>
+            </div>
+            <% } %>
+            <div class="contenedor-input">
+                <div class="form-field">
+                        <label for="nombre" class="form-label">nombre:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingrese su nombre" required>
+                        <div id="error-nombre" class="invalid-feedback"></div>
+                    </div>
+            </div>
+                <div class="contenedor-input">
+                    <label for="correo" class="form-label">correo:</label>
+                    <input type="text" class="form-control" id="correo" name="correo" placeholder="ingrese su correo" required>
+                   
+                </div>
+            
+                <div class="contenedor-input">
+                    <label for="contraseña" class="form-label">contraseña:</label>
+                    <input type="password" class="form-control" id="contrasenia" name="contrasenia" placeholder="contraseña" required>
+                   
+                </div>
+                    
+              
+                <div class="form-actions">
+                    <button type="submit">Crear usuario</button>
+                    <button type="reset">Cancelar</button>
+                </div>
+               
+            </form>
+        
+    </main>
+    </body>
+</html>

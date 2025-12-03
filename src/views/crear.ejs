@@ -10,8 +10,20 @@
                 <input type="text" name="nombre" id="nameProd" required>
             </div>
             <div class="contenedor-input">
-                <label for="imageProd">Imagen</label>
-                <input type="text" name="img_url" id="imageProd" required>
+                <label id="dropArea" class="drop-zone">
+      
+                    <p class="drop-text">Arrastra un archivo aquí o <span>explora</span></p>
+                    <p class="drop-subtext">Tamaño máximo: 5MB</p>
+                    <input type="file" id="fileInput" name="image" />
+                </label>
+
+                <div class="file-preview" id="filePreview">
+                    <div id="fileName">Archivo: </div>
+                    <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            
             </div>
             <div class="contenedor-input">
                 <label for="categoryProd">Categoria</label>
@@ -29,10 +41,12 @@
                  <input class="submit" type="submit" value="Crear producto">
             </div>
                    
-        </form>
-
+            </form>
+            <div id="mensaje-creado">
+        </div>
     </main>
     <%- include("partials/footer.ejs") %>
     <script src="js/crear.js"></script>
+    
 </body>
 </html>

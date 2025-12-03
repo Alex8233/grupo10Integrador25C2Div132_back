@@ -1,9 +1,5 @@
 body{margin :0
 }
-
-.buscar-producto{
-    width: 33.33%;
-}
 .header-busqueda{
     width: 90%;
     margin: 0 auto;
@@ -18,6 +14,17 @@ body{margin :0
     display: flex;
     margin: auto;
     align-items: center;
+    justify-content: space-between;
+}
+.submenu{
+  color: #1A1A1A;
+  padding: 10px;
+}
+
+.submenu:hover {
+  background-color: #1F6FEB; /* Azul petróleo */
+  color: #ffffff;
+  cursor: pointer;
 }
 .logo{
     width: 33.33%;
@@ -32,10 +39,16 @@ body{margin :0
     width: 33.33%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     gap: 20px;
-    font-size: 1.6rem;
+    font-size: 2.6rem;
 
+}
+.header-from{
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 .registro{
     display: flex;
@@ -44,11 +57,11 @@ body{margin :0
 }
 .registro p,h6{
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 .registro p{
     size: 5px;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
 }
 
 
@@ -80,9 +93,6 @@ a:visited, a{
    
     color: #333333;
 }
-/*===========================================================================================================
-carrito
-============================================================================================================*/
 .header-carrito a:hover , .navegacion:hover{
     color: #c4c4c4;
     
@@ -91,106 +101,7 @@ carrito
     cursor: pointer;
     background-color:#c4c4c4 ;
 }
-.contenedor-carrito{
-   
-    display: none;
-   
-}
-.contenedor-carrito div{
-    height: 40px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-}
 
-/*
-
-buscar por categoria 
-
-*/
- .contenedor-categoria{
-display: none;
-} 
- .navegacion:hover  .contenedor-categoria{
-    display: flex;
-    position: fixed;
-    flex-direction: column;
-    background-color: #ffffff;
-    border: 1px solid #3333331A;
- }
-.navegacion-categoria{
-    width: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-}
-/*cada vez que pasamos el cursor arriba del carrito se va a mostrar todos los productos que fueron agregados al carrito */
-.header-carrito a:hover .contenedor-carrito{
-    display: flex;
-    justify-content: center;
-    align-content: flex-start;
-    position: fixed;
-    align-items: center;
-    right: 0;
-    top:0;
-    flex-wrap: wrap;
-    flex-direction: row;
-    background-color: white;
-    border: 2px solid  #3333331A;
-    width: 40%;
-    height: 100%; 
-    color: black;
-}
-
-#carrito{
- display: flex;
- flex-wrap: wrap;
- width: 100%;
- flex-direction: column;
-}
-#carrito ul{
-    
-    width: 90%;
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-    padding: 0;
-    gap: 5px;
-}
-.bloque-carrito{
-     width: 100%;
-    height: 100%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: space-around;
-    border-radius: 5px;
-
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.bloque-carrito div{
-        margin: 0;
-        display: flex;
-        height: 100%;
-        justify-content: flex-start;
-        gap: 5px;
-        align-items: center;
-        
-}
-.bloque-carrito img{
-    width: 70px;
-    height: 50px;
-}
-.vacio{
-    padding: 50px;
-    margin:  auto;
-}
 /*===========================================================================================================
 tarjetas productos
 ============================================================================================================*/
@@ -222,26 +133,7 @@ tarjetas productos
     width: 100px;
     height: 120px;
 }
-/*============================================
-FORMULARIO
-=========================================*/
-.contenedor-form{
-    margin:auto;
-    margin-top: 30px;
-    width: 50%;
-    min-height: 400px;
-    max-height: 900px;
-    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
-    border-radius: 5px;
-}
-.products-form{
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    border-radius: 5px;
-}
 .contenedor-input{
     display: flex;  
     flex-direction: column;
@@ -278,3 +170,132 @@ FORMULARIO
     bottom: 0;
 
  }
+/*============================================
+FORMULARIO
+=========================================*/
+.contenedor-form{
+    margin:auto;
+    margin-top: 30px;
+    width: 50%;
+    min-height: 400px;
+    max-height: 900px;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    border-radius: 5px;
+}
+.products-form{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-radius: 5px;
+}
+
+/* ////////////////////////////////////////////// */
+
+
+
+
+.upload-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.drop-zone {
+  display: block;
+  background-color: #ffffff;
+  border: 2px dashed #94a3b8;
+  border-radius: 1rem;
+  padding: 3rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.drop-zone:hover {
+  border-color: #2563eb;
+  background-color: #f6fbff;
+}
+
+.drop-zone .dragover {
+  transform: scale(1.03);
+  border-color: #2563eb;
+  background-color: #f6fbff;
+}
+
+.drop-zone .upload-icon {
+  width: 64px;
+  height: auto;
+  fill: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.drop-zone p {
+  margin: 0.25rem 0;
+}
+
+.drop-text {
+  font-size: 1rem;
+  color: #374151;
+}
+
+.drop-text span {
+  font-weight: bold;
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.drop-subtext {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-preview {
+  margin-top: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 1rem;
+  display: none;
+  flex-direction: column;
+  font-size: 0.9rem;
+  color: #1f2937;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #2563eb;
+  transition: width 3s ease;
+}
+
+.upload-button {
+  margin-top: 1.5rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+.upload-button:hover {
+  background-color: #1e40af;
+}

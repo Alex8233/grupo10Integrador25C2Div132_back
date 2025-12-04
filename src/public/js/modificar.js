@@ -185,8 +185,7 @@ async function actualizarProducto(event) {
       body: formData, // SIN HEADERS
     });
 
-    console.log(response);
-
+    console.log(response.ok);
     let result = await response.json();
     if (response.ok) {
       console.log(result.message);

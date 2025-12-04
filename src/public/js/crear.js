@@ -20,7 +20,7 @@ async function enviarProducto(data) {
     console.log(resultado);
 
     if (respuesta.ok) {
-      alert("se creo el producto correctamente ");
+      alert("se creo el producto correctamente");
       console.log(resultado.message);
       setTimeout(() => {
         window.location.href = "http://localhost:3000/index";

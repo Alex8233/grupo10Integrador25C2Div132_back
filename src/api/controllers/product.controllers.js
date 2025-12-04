@@ -88,7 +88,8 @@ export const createProduct = async (req, res) => {
       precio
     );
     console.log(rows);
-    res.status(201).json({
+    return res.status(201).json({
+      ok: true,
       message: "Producto creado con exito!",
     });
   } catch (error) {
@@ -132,6 +133,10 @@ export const modifyProduct = async (req, res) => {
         message: "No se actualizo el producto",
       });
     }
+    return res.status(200).json({
+      ok: true,
+      message: "Producto actualizado correctamente",
+    });
   } catch (error) {
     console.error("Error al actualizar producto: ", error);
     res.status(500).json({

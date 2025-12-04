@@ -191,6 +191,9 @@ async function actualizarProducto(event) {
     if (response.ok) {
       console.log(result.message);
       alert(result.message);
+      setTimeout(() => {
+        window.location.href = "http://localhost:3000/index";
+      }, 500);
       listado_productos.innerHTML = "";
       contenedor_formulario.innerHTML = "";
     } else {

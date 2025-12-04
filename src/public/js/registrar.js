@@ -1,54 +1,67 @@
-const form = document.getElementById("registerForm");
-const API_URL = "http://localhost:3000";
+// const form = document.getElementById("registerForm");
+// const API_URL = "http://localhost:3000";
 
-form.addEventListener("submit", registerUser);
+// const usuarioExiste = async (correo) => {
+//   const res = await fetch(`${API_URL}/usuarios/existe/${correo}`);
+//   const data = await res.json();
+//   return data.existe;
+// };
 
-const registerUser = async (event) => {
-  event.preventDefault();
+// const createUser = async (obj) => {
+//   try {
+//     console.log("hollaaaa");
+//     const res = await fetch(`${API_URL}/registrar-usuario`, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(obj),
+//     });
 
-  const correo = document.getElementById("correo").value;
+//     const data = await res.json();
 
-  // Validar campos HTML5
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
+//     if (!res.ok) {
+//       throw new Error(data.error || "Error al registrar usuario");
+//     }
 
-  // Chequear si ya existe (validación frontend opcional)
-  if (await usuarioExiste(correo)) {
-    alert("El correo ya está registrado.");
-    return;
-  }
+//     return data;
+//   } catch (err) {
+//     console.error("Error en createUser:", err);
+//     throw err;
+//   }
+// };
 
-  // Crear usuario
-  await createUser(obj);
-  alert("Registro exitoso.");
-  window.location.href = API_URL;
-};
-const usuarioExiste = async (correo) => {
-  const res = await fetch(`${API_URL}/usuarios/existe/${correo}`);
-  const data = await res.json();
-  return data.existe;
-};
-const createUser = async (obj) => {
-  try {
-    const res = await fetch(`${API_URL}/registrar-usuario`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj),
-    });
+// const registerUser = async (event) => {
+//   event.preventDefault();
 
-    const data = await res.json();
+//   const correo = document.getElementById("correo").value;
 
-    if (!res.ok) {
-      throw new Error(data.error || "Error al registrar usuario");
-    }
+//   // Validar HTML5
+//   if (!form.checkValidity()) {
+//     form.reportValidity();
+//     return;
+//   }
 
-    return data;
-  } catch (err) {
-    console.error("Error en createUser:", err);
-    throw err;
-  }
-};
+//   // Construir el objeto usuario
+//   const obj = {
+//     nombre: document.getElementById("nombre").value,
+//     correo: document.getElementById("correo").value,
+//     contrasenia: document.getElementById("contrasenia").value,
+//   };
+
+//   // Chequear si ya existe
+//   if (await usuarioExiste(correo)) {
+//     alert("El correo ya está registrado.");
+//     return;
+//   }
+
+//   try {
+//     await createUser(obj);
+//     alert("Registro exitoso.");
+//     window.location.href = `${API_URL}/index`;
+//   } catch (err) {
+//     alert("Error al registrar: " + err.message);
+//   }
+// };
+
+// form.addEventListener("submit", registerUser);

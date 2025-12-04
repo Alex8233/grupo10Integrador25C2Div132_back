@@ -46,7 +46,20 @@ const registrarUser = (correo, contrasenia, nombre) => {
         `;
   return connection.query(sql, [correo, contrasenia, nombre]);
 };
+const insertVentas = (fecha, total, nombre_usuario) => {
+  const sql =
+    "INSERT INTO ventas (fecha, total, nombre_usuario) VALUES (?, ?, ?)";
+  return connection.query(sql, [fecha, total, nombre_usuario]);
+};
+const insertVentas_Producto = (products, saleId) => {
+  const sqlProductSale =
+    "INSERT INTO ventas_productos (producto_id, venta_id) VALUES (?, ?)";
 
+  // Como tenemos una relacion N a N, debemos insertar una fila por cada producto vendido
+  for (const productId of products) {
+    connection.query(sqlProductSale, [productId, saleId]);
+  }
+};
 export default {
   selectAllProducts,
   selectProductById,
@@ -56,4 +69,6 @@ export default {
   selectAllUsuarios,
   selectProducts,
   registrarUser,
+  insertVentas,
+  insertVentas_Producto,
 };

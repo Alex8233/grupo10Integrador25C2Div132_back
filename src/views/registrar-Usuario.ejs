@@ -15,11 +15,11 @@
             </div>
             <% } %>
             <div class="contenedor-input">
-                <div class="form-field">
+               
                         <label for="nombre" class="form-label">nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="ingrese su nombre" required>
-                        <div id="error-nombre" class="invalid-feedback"></div>
-                    </div>
+                      
+                  
             </div>
                 <div class="contenedor-input">
                     <label for="correo" class="form-label">correo:</label>
@@ -36,10 +36,18 @@
               
                 <div class="form-actions">
                     <button type="submit">Crear usuario</button>
-                    <button type="reset">Cancelar</button>
+                    <button type="button" id="volverIndex">Cancelar</button>
                 </div>
                
             </form>
+            <script>
+
+
+                let Cancelar= document.getElementById("volverIndex");
+                Cancelar.addEventListener("click", () => {
+                    window.location.href = `http://localhost:3000/index`
+                });
+    </script>
         
     </main>
     </body>

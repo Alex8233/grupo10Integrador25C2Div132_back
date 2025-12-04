@@ -22,7 +22,9 @@ async function enviarProducto(data) {
     if (respuesta.ok) {
       alert("se creo el producto correctamente ");
       console.log(resultado.message);
-      window.location.href = "http://localhost:3000/index";
+      setTimeout(() => {
+        window.location.href = "http://localhost:3000/index";
+      }, 500);
     } else {
       console.error("Error al enviar los datos, ", resultado.message);
       mensaje.innerHTML = `

@@ -14,12 +14,17 @@ async function obtenerProductos() {
 
     let productos = data.payload;
 
+    if (data.total > limit) {
+      mostrarBotonesPaginacion();
+    }
     mostrarProductos(productos);
-    // Si hay más productos, mostramos el botón
-    if (offset + limit < data.total) {
-      mostrarBotonCargarMas();
-    } else {
-      ocultarBotonCargarMas();
+    if (offset === 0) {
+      document.getElementById("btnVolver").style.display = "none";
+    }
+
+    // Ocultar "cargar más" si estamos al final
+    if (offset + limit >= data.total) {
+      document.getElementById("btnCargarMas").style.display = "none";
     }
   } catch (error) {
     console.error(error);
@@ -31,6 +36,7 @@ function mostrarProductos(array) {
   let htmlProducto = "";
 
   array.forEach((producto) => {
+    console.log(producto.img_url);
     htmlProducto += `
                     <div class="card-producto">
                         <img src="${URL_BASE}${producto.img_url}" alt="${producto.nombre}">
@@ -55,9 +61,23 @@ function mostrarBotonCargarMas() {
   });
 }
 
-function ocultarBotonCargarMas() {
-  let btn = document.getElementById("btnCargarMas");
-  if (btn) btn.style.display = "none";
+function mostrarBotonesPaginacion() {
+  contenedorBtn.innerHTML = `
+    <button id="btnVolver" class="btn btn-secondary">Volver</button>
+    <button id="btnCargarMas" class="btn btn-primary">Cargar más</button>
+  `;
+
+  document.getElementById("btnVolver").addEventListener("click", volverAtras);
+  document
+    .getElementById("btnCargarMas")
+    .addEventListener("click", cargarMasProductos);
+}
+function volverAtras() {
+  offset -= limit;
+
+  if (offset < 0) offset = 0; // Para que nunca sea negativo
+
+  obtenerProductos();
 }
 
 //  AVANZAR A LOS SIGUIENTES PRODUCTOS
@@ -65,7 +85,6 @@ function cargarMasProductos() {
   offset += limit;
   obtenerProductos();
 }
-
 function init() {
   obtenerProductos();
 }

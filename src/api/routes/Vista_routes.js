@@ -10,7 +10,8 @@ import {
   viewLogin,
   logout,
   registrarUsuario,
-  ValidarUsuario,
+  viewRegistrarUsuario,
+  viewSales,
 } from "../controllers/vista.controllers.js";
 import { requireLogin } from "../middlewares/middlewares.js";
 router.get("/index", requireLogin, viewIndex);
@@ -22,14 +23,9 @@ router.get("/login", viewLogin);
 
 router.post("/login", getAllUsuarios);
 router.post("/logout", logout);
-router.get("/registrar-usuario", requireLogin, function (req, res) {
-  res.render("registrar-usuario", {
-    error: "",
-    title: "REGISTER",
-    about: "Crear Usuario",
-  });
-});
+router.get("/registrar-usuario", requireLogin, viewRegistrarUsuario);
 
-router.post("/registrar-usuario", registrarUsuario);
-router.get("/usuarios/existe/:correo", ValidarUsuario);
+router.post("/registrar-usuario", requireLogin, registrarUsuario);
+router.post("/sales", viewSales);
+// router.get("/usuarios/existe/:correo", ValidarUsuario);
 export default router;

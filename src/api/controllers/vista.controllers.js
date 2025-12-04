@@ -131,31 +131,101 @@ export const registrarUsuario = async (req, res) => {
   const { nombre, correo, contrasenia } = req.body;
 
   if (!nombre || !correo || !contrasenia) {
-    return res
-      .status(400)
-      .json({ error: "nombre, correo y contraseña son requeridos" });
+    return res.render("registrar-usuario", {
+      title: "REGISTER",
+      about: "Crear Usuario",
+      error: "Complete todos los campos",
+    });
   }
 
   try {
-    const passwordHasheada = await hashPassword(contrasenia);
-    const [rows] = await productModels.registrarUser(
-      correo,
-      passwordHasheada,
-      nombre
+    const [existe] = await productModels.selectAllUsuarios(correo);
+
+    console.log("Resultado de búsqueda de usuario:", existe);
+
+    if (existe.length > 0) {
+      console.log("Error: el correo ya está registrado:", correo);
+      return res.render("registrar-usuario", {
+        title: "REGISTER",
+        about: "Crear Usuario",
+        error: `Error: el correo ya está registrado:`,
+      });
+    } else {
+      const passwordHasheada = await hashPassword(contrasenia);
+      console.log("Password hasheada:", passwordHasheada);
+
+      const [rows] = await productModels.registrarUser(
+        correo,
+        passwordHasheada,
+        nombre
+      );
+
+      console.log("Usuario registrado exitosamente");
+      res.redirect("/index");
+    }
+  } catch (error) {
+    console.error("Error al registrar usuario:", error);
+    res.status(500).json({
+      message: "Error interno del servidor",
+      error: error.message,
+    });
+  }
+};
+export const viewRegistrarUsuario = async (req, res) => {
+  try {
+    res.render("registrar-usuario", {
+      error: "",
+      title: "REGISTER",
+      about: "Crear Usuario",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const viewSales = async (req, res) => {
+  try {
+    // Recibimos los datos del cuerpo de la peticion HTTP
+    let { fecha, total, nombre_usuario, products } = req.body;
+
+    // Validacion de datos obligatorios
+    if (!fecha || !total || !nombre_usuario || !Array.isArray(products)) {
+      return res.status(400).json({
+        message:
+          "Datos invalidos, debes enviar date, total_price, user_name y products (array)",
+      });
+    }
+
+    const [rows] = await productModels.insertVentas(
+      fecha,
+      total,
+      nombre_usuario
     );
 
-    res.status(201).json({ message: "usuario registrado" });
-  } catch (err) {
-    res.status(500).json({ error: "Error al registrar" });
+    // 2. Obtenemos el id de la venta recien creada
+    const saleId = rows.insertId;
+
+    // Como tenemos una relacion N a N, debemos insertar una fila por cada producto vendido
+    await productModels.insertVentas_Producto(products, saleId);
+
+    // Respuesta de exito
+    res.status(201).json({
+      message: "Venta registrada con exito!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Error interno del servidor",
+      error: error.message,
+    });
   }
 };
-export const ValidarUsuario = async (req, res) => {
-  const correo = req.params.correo;
+// export const ValidarUsuario = async (req, res) => {
+//   const correo = req.params.correo;
 
-  const [rows] = await productModels.selectAllUsuarios(correo);
+//   const [rows] = await productModels.selectAllUsuarios(correo);
 
-  if (rows.length > 0) {
-    return res.json({ existe: true });
-  }
-  return res.json({ existe: false });
-};
+//   if (rows.length > 0) {
+//     return res.json({ existe: true });
+//   }
+//   return res.json({ existe: false });
+// };
